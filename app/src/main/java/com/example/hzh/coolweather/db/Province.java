@@ -1,10 +1,12 @@
 package com.example.hzh.coolweather.db;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * Created by Administrator on 2019/8/22.
  */
 
-public class Province {
+public class Province extends DataSupport {
     private int id;
     private String provinceName;//名称
     private int provinceCode;//代号

@@ -1,10 +1,12 @@
 package com.example.hzh.coolweather.db;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * Created by Administrator on 2019/8/22.
  */
 
-public class Country {
+public class Country extends DataSupport {
     private int id;
     private String countryName;
     private String weatherId;
