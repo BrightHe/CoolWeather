@@ -101,10 +101,17 @@ public class ChooseAreaFragment extends Fragment {
                     queryCountries();
                 }else if (currentLever == LEVER_COUNTRY){//加载天气信息
                     String weatherId = countryList.get( position ).getWeatherId();
-                    Intent intent = new Intent( getActivity(),WeatherActivity.class );
-                    intent.putExtra( "weather_id",weatherId );
-                    startActivity( intent );
-                    getActivity().finish();
+                    if (getActivity() instanceof MainActivity){//判断抽屉是从哪个活动打开的
+                        Intent intent = new Intent( getActivity(),WeatherActivity.class );
+                        intent.putExtra( "weather_id",weatherId );
+                        startActivity( intent );
+                        getActivity().finish();
+                    }else if (getActivity() instanceof  WeatherActivity){
+                        WeatherActivity weatherActivity = (WeatherActivity) getActivity();
+                        weatherActivity.drawerLayout.closeDrawers();
+                        weatherActivity.swipeRefresh.setRefreshing( true );//刷新天气信息
+                        weatherActivity.requestWeather( weatherId );
+                    }
                 }
             }
         } );
